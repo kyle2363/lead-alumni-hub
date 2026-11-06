@@ -4,6 +4,8 @@ A responsive capstone concept for The CAFE Group's LEAD alumni community. This i
 
 All events, opportunities, organizations, and alumni profiles are fictional. No emails, registrations, introduction requests, applications, or newsletter subscriptions are sent.
 
+[Site Link](https://kyle2363.github.io/lead-alumni-hub/)
+
 ## Run locally
 
 Requires Node.js 24 and npm.
