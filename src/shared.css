@@ -1,0 +1,37 @@
+/* Shared additions used by every design: mockup banner + design switcher, Give Back page layout. */
+.demo-banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 22px; padding: 7px 20px; text-align: left; }
+.demo-banner-text { margin: 0; }
+.design-switcher { display: inline-flex; align-items: center; gap: 4px; padding: 3px; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); border-radius: 99px; text-transform: none; letter-spacing: 0; }
+.design-switcher-label { padding: 0 6px 0 9px; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
+.design-option { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 3px 11px 3px 4px; border: 0; border-radius: 99px; background: transparent; color: inherit; font-size: .74rem; font-weight: 700; letter-spacing: 0; text-transform: none; cursor: pointer; }
+.design-option b { display: grid; width: 21px; height: 21px; place-items: center; border-radius: 50%; background: color-mix(in srgb, currentColor 18%, transparent); font-size: .68rem; }
+.design-option:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
+.design-option[aria-pressed='true'] { background: #fff; color: #171717; }
+.design-option[aria-pressed='true'] b { background: var(--switch-accent, #ea4b26); color: #fff; }
+.design-option:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+@media (max-width: 650px) {
+  .demo-banner { padding: 8px 12px; text-align: center; }
+  .design-option span { display: none; }
+  .design-option { padding: 3px; }
+  .design-option[aria-pressed='true'] { padding-right: 10px; }
+  .design-option[aria-pressed='true'] span { display: inline; }
+}
+
+/* Give Back page (route exists in every design; linked from design C's navigation) */
+.gb-filters { display: flex; flex-direction: column; gap: 12px; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+.gb-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+.gb-chips-label { min-width: 64px; color: var(--muted); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.gb-chips button { min-height: 36px; padding: 7px 14px; border: 1px solid var(--line); border-radius: 99px; background: #fff; color: var(--ink); font-size: .82rem; font-weight: 700; cursor: pointer; }
+.gb-chips button:hover { border-color: var(--orange); }
+.gb-chips button[aria-pressed='true'] { border-color: var(--ink); background: var(--ink); color: #fff; }
+.gb-card { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+.gb-card .card-description { flex: 1; }
+.gb-card .card-meta { margin: 0 0 14px; }
+.gb-card-top { display: flex; width: 100%; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.gb-season { color: var(--muted); font-size: .78rem; font-weight: 700; }
+.gb-how { max-width: 900px; }
+.gb-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 28px 0 30px; padding: 0; list-style: none; counter-reset: step; }
+.gb-steps li { counter-increment: step; display: flex; flex-direction: column; gap: 6px; padding: 20px; border-top: 3px solid var(--orange); background: var(--paper); }
+.gb-steps li::before { content: counter(step, decimal-leading-zero); color: var(--orange-dark); font-weight: 800; letter-spacing: .08em; }
+.gb-steps span { color: var(--muted); font-size: .9rem; }
+@media (max-width: 760px) { .gb-steps { grid-template-columns: 1fr; } .gb-chips-label { width: 100%; } }

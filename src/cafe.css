@@ -1,0 +1,188 @@
+/* Design A — "CAFE match". Tokens sampled from thecafe.org/programs/lead (Nov 2026):
+   navy #133D65, orange #F1562A, page #FEFCFA, peach panels #FFF5F0, accent blue #337ABE,
+   Literata headings, Graphik body (Public Sans stands in for Graphik, which is licensed).
+   Orange text and button fills use a slightly deeper #CF421A so white text passes WCAG AA. */
+:root[data-design='cafe'] {
+  & {
+    --navy: #133d65; --blue: #337abe; --sky: #3d9be9;
+    --orange: #f1562a; --orange-dark: #cf421a;
+    --gold: #f1562a;
+    --peach: #fff5f0; --cream: #fefcfa; --paper: #fff;
+    --ink: #2c2c2c; --muted: #555; --line: #e8e6e6;
+    --serif: 'Literata Variable', Georgia, serif;
+    --sans: 'Public Sans Variable', 'Helvetica Neue', Arial, sans-serif;
+    --content: 1160px; --radius: 0px;
+    --switch-accent: var(--orange-dark);
+    font-family: var(--sans); background: var(--cream); color: var(--ink);
+  }
+  body { background: var(--cream); }
+  body, button, input, select, textarea { font-family: var(--sans); }
+  ::selection { background: #ffd9cc; }
+
+  /* Headings */
+  .hero-title, .page-title, .section-title, .card-title, .pillar-title, .profile-name, .empty-state h2,
+  .detail-dialog h2#dialog-title, .detail-dialog h3, .preference-panel h2, .digest-masthead h2, .giveback-options h3,
+  .newsletter-layout h2, .digest-welcome h3, .digest-section h3 {
+    font-family: var(--serif); color: var(--navy); letter-spacing: 0;
+  }
+  .section-title, .page-title { font-weight: 700; }
+  .card-title, .profile-name, .giveback-options h3 { font-weight: 500; }
+  .eyebrow, .section-kicker, .cafe-kicker { color: var(--orange-dark); font-size: .82rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+  .eyebrow::before, .section-kicker::before { display: none; }
+
+  /* Announcement bar */
+  .demo-banner { background: var(--navy); color: #fff; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .demo-dot { background: var(--orange); }
+
+  /* Header */
+  .site-header { position: sticky; top: 0; background: #fff; box-shadow: 0 1px 0 var(--line); }
+  .header-inner { min-height: 78px; }
+  .brand-cafe { display: inline-flex; align-items: center; gap: 7px; color: var(--navy); }
+  .brand-cafe svg { width: 22px; height: 22px; color: var(--orange); fill: var(--orange); }
+  .brand-cafe > span { display: inline; margin: 0; font-family: var(--sans); font-size: 1.12rem; font-weight: 400; letter-spacing: .02em; text-transform: uppercase; }
+  .brand-cafe b { margin-right: 6px; font-weight: 800; }
+  .nav-link { color: var(--navy); font-size: .92rem; font-weight: 500; }
+  .nav-link:hover, .nav-link.active { color: var(--orange-dark); }
+  .nav-link.active::after { height: 2px; background: var(--orange); }
+  .nav-external { padding: 10px 20px; border-radius: 3px; background: var(--orange-dark); color: #fff; font-size: .9rem; font-weight: 600; }
+  .nav-external:hover { background: #b33612; color: #fff; }
+
+  /* Buttons: flat, squared, tracked-out label with a chevron */
+  .button { min-height: 50px; padding: 12px 26px; border-radius: 3px; font-size: .95rem; font-weight: 500; letter-spacing: .1em; }
+  .button:hover { transform: none; box-shadow: none; }
+  .button.primary, .button.gold { background: var(--orange-dark); color: #fff; }
+  .button.primary:hover, .button.gold:hover { background: #b33612; }
+  .button.secondary { border: 1.5px solid var(--orange); background: transparent; color: var(--orange-dark); }
+  .button.secondary:hover { background: var(--peach); border-color: var(--orange-dark); }
+  .button.dark { background: var(--navy); color: #fff; }
+  .button.ghost { border: 1.5px solid #fff; background: transparent; color: #fff; }
+  .button.ghost:hover { background: #ffffff1a; }
+  .text-button, .section-link { color: var(--orange-dark); font-weight: 600; letter-spacing: .02em; }
+
+  /* Photo placeholders: tinted, photo-like blocks with a visible label */
+  .photo-slot { position: relative; min-height: 220px; overflow: hidden; background:
+      radial-gradient(circle at 28% 38%, #f2c9a8 0 9%, transparent 9.5%),
+      radial-gradient(circle at 58% 34%, #c98f6b 0 8%, transparent 8.5%),
+      radial-gradient(circle at 80% 42%, #e4b48f 0 7.5%, transparent 8%),
+      radial-gradient(ellipse at 28% 95%, #3d6c99 0 26%, transparent 26.5%),
+      radial-gradient(ellipse at 58% 92%, #e8e6e6 0 24%, transparent 24.5%),
+      radial-gradient(ellipse at 80% 96%, #f1562a 0 20%, transparent 20.5%),
+      linear-gradient(160deg, #b9cde0, #7c9cbc 55%, #4f7397); }
+  .photo-slot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, #133d6540, transparent 60%); }
+  .photo-slot-label { position: absolute; z-index: 1; left: 14px; bottom: 12px; padding: 5px 10px; border-radius: 3px; background: #fffffff0; color: var(--navy); font-size: .7rem; font-weight: 600; letter-spacing: .04em; }
+
+  /* Hero */
+  .cafe-hero { position: relative; min-height: clamp(420px, 52vw, 560px); display: flex; align-items: center; border-left: 12px solid var(--sky); overflow: hidden; }
+  .cafe-hero-photo { position: absolute; inset: 0; min-height: 0; }
+  .cafe-hero-photo::after { background: linear-gradient(90deg, #133d65e6 0%, #133d65b3 45%, #337abe59 100%); }
+  .cafe-hero-photo .photo-slot-label { left: auto; right: 16px; }
+  .cafe-hero-inner { position: relative; z-index: 1; padding-block: 60px; color: #fefcfa; }
+  .cafe-hero-eyebrow { margin: 0 0 6px; color: #cac8c7; font-size: 1rem; letter-spacing: .04em; }
+  .cafe-hero h1 { margin: 0; font: 700 clamp(3rem, 6vw, 4.6rem)/1.05 var(--serif); }
+  .cafe-hero-inner > p:last-child { max-width: 560px; margin: 22px 0 0; font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.55; }
+
+  /* About block */
+  .cafe-about { max-width: 980px; padding-block: 88px 72px; }
+  .cafe-kicker { margin: 0 0 14px; }
+  .cafe-about h2, .cafe-h2 { margin: 0 0 26px; color: var(--navy); font: 700 clamp(2rem, 3.6vw, 3rem)/1.18 var(--serif); }
+  .cafe-about > p:not(.cafe-kicker) { margin: 0 0 22px; font-size: clamp(1.02rem, 1.4vw, 1.2rem); line-height: 1.6; }
+  .cafe-pullquote { margin: 38px 0 40px; color: var(--blue); font: 400 clamp(1.45rem, 2.6vw, 2rem)/1.35 var(--serif); }
+  .cafe-actions { display: flex; flex-wrap: wrap; gap: 16px 24px; }
+  .cafe-actions .button { min-width: 280px; }
+
+  .cafe-photo-strip { display: grid; grid-template-columns: 1fr 1.25fr; }
+  .cafe-photo-strip .photo-slot { min-height: clamp(240px, 30vw, 420px); }
+  .cafe-photo-strip .photo-slot:last-child { background: linear-gradient(140deg, #3d9be9, #133d65); }
+
+  /* Features */
+  .cafe-section { padding-block: 84px 20px; }
+  .cafe-section:last-of-type { padding-bottom: 84px; }
+  .cafe-feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .cafe-feature { display: flex; flex-direction: column; background: var(--peach); }
+  .cafe-feature .photo-slot { min-height: 0; aspect-ratio: 4 / 3; }
+  .cafe-feature > div { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 26px 26px 28px; }
+  .cafe-feature h3 { margin: 0 0 12px; color: var(--navy); font: 400 1.55rem/1.2 var(--serif); }
+  .cafe-feature p { flex: 1; margin: 0 0 18px; font-size: 1rem; line-height: 1.6; }
+  .cafe-text-link { display: inline-flex; align-items: center; gap: 4px; color: var(--orange-dark); font-weight: 600; letter-spacing: .06em; text-decoration: none; }
+  .cafe-text-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .cafe-lede { max-width: 900px; margin: 40px 0 0; font-size: clamp(1.02rem, 1.4vw, 1.2rem); line-height: 1.6; }
+  .cafe-heading-row { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+  .cafe-heading-row .cafe-h2 { margin-bottom: 8px; }
+  .cafe-small { margin: 0 0 26px; color: var(--muted); font-size: .9rem; }
+
+  /* Split section */
+  .cafe-split { display: grid; grid-template-columns: 1fr 1fr; margin-top: 84px; background: #fff; }
+  .cafe-split-copy { padding: clamp(40px, 7vw, 96px) clamp(24px, 6vw, 84px); }
+  .cafe-split h2 { margin: 0 0 24px; color: var(--navy); font: 400 clamp(1.7rem, 2.6vw, 2.2rem)/1.3 var(--serif); }
+  .cafe-split-copy > p:not(.cafe-kicker) { margin: 0 0 18px; font-size: 1.05rem; line-height: 1.65; }
+  .cafe-split-photo { min-height: 420px; }
+
+  /* Navy band */
+  .cafe-band { margin-top: 84px; padding-block: clamp(56px, 8vw, 96px); background: var(--navy); color: #fefcfa; }
+  .cafe-band .cafe-kicker { color: #ffb59c; }
+  .cafe-band h2 { max-width: 760px; margin: 0 0 18px; font: 700 clamp(2rem, 3.6vw, 3rem)/1.18 var(--serif); }
+  .cafe-band p:not(.cafe-kicker) { max-width: 640px; margin: 0 0 32px; font-size: 1.15rem; line-height: 1.6; }
+
+  /* Shared cards across pages */
+  .event-card, .opportunity-card, .profile-card, .giveback-options article { border: 0; border-radius: 0; background: var(--peach); box-shadow: none; }
+  .event-card:hover, .opportunity-card:hover { transform: none; box-shadow: inset 0 -3px 0 var(--orange); }
+  .event-card .event-top, .event-card:nth-child(n) .event-top, .opportunity-card .event-top { min-height: 0; padding-bottom: 0; background: transparent; }
+  .date-month { color: var(--orange-dark); }
+  .date-day { color: var(--navy); font: 700 2.4rem/1 var(--serif); letter-spacing: 0; }
+  .badge { border-radius: 2px; background: #fff; color: var(--navy); font-weight: 600; }
+  .card-title { font-size: 1.35rem; }
+  .card-body .section-kicker { font-weight: 600; }
+  .opportunity-symbol { border-radius: 0; background: #fff !important; color: var(--orange-dark); }
+  .save-button { border-radius: 2px; }
+  .avatar { border-radius: 0; background: var(--navy); color: #fff; font-family: var(--serif); }
+  .tag { border-radius: 2px; background: #fff; color: var(--navy); }
+  .mentor-badge { background: #fff; }
+
+  /* Listing pages get the program-page hero treatment */
+  .page-intro { position: relative; margin-bottom: 40px; padding-block: clamp(60px, 8vw, 100px); border-left: 12px solid var(--sky); background: linear-gradient(90deg, var(--navy), #24578a 70%, var(--blue)); color: #fefcfa; }
+  .page-intro .eyebrow { color: #cac8c7; font-weight: 400; }
+  .page-intro .page-title { color: #fefcfa; font-size: clamp(2.4rem, 5vw, 3.8rem); }
+  .page-intro .page-description { color: #fefcfa; font-size: 1.12rem; }
+  .filters, .preference-panel, .digest-preview, .empty-state { border-color: var(--line); border-radius: 0; background: #fff; }
+  .search-field input, .filter-field select { border-color: #cfcccb; border-radius: 2px; }
+  .type-tab { border-radius: 2px; border-color: var(--line); background: #fff; color: var(--navy); font-weight: 600; }
+  .type-tab.active { border-color: var(--navy); background: var(--navy); color: #fff; }
+  .notice { border-left: 4px solid var(--blue); border-radius: 0; background: #eef5fc; color: #24384d; }
+  .interest-option, .cadence-options label { border-radius: 2px; }
+  .interest-option.selected, .interest-option:has(input:checked) { border-color: var(--orange); background: var(--peach); }
+  .digest-topline { background: var(--orange-dark); color: #fff; }
+  .digest-masthead { background: var(--navy); }
+  .digest-masthead h2 { color: #fff; font: 700 clamp(2rem, 3.4vw, 2.8rem)/1.05 var(--serif); }
+  .digest-masthead .eyebrow, .digest-masthead h2 span { color: #ffb59c; }
+  .digest-welcome { background: var(--peach); }
+  .giveback-options article { background: var(--peach); }
+  dialog.detail-dialog { border-radius: 0; }
+  .detail-dialog h2#dialog-title { font-weight: 700; }
+
+  /* Footer */
+  .site-footer { background: var(--navy); color: #fefcfa; }
+  .site-footer .brand-cafe, .footer-brand p, .footer-links a, .footer-note, .footer-note p { color: #fefcfa; }
+  .footer-links a:hover { color: #ffb59c; }
+  .footer-note { border-top-color: #ffffff33; }
+
+  @media (max-width: 1000px) { .site-header nav { background: #fff; } }
+  @media (max-width: 900px) {
+    .cafe-feature-grid { grid-template-columns: 1fr; }
+    .cafe-feature { display: grid; grid-template-columns: 40% 1fr; }
+    .cafe-feature .photo-slot { aspect-ratio: auto; }
+    .cafe-split { grid-template-columns: 1fr; }
+    .cafe-split-photo { min-height: 280px; }
+  }
+  @media (max-width: 650px) {
+    .cafe-hero { border-left-width: 6px; }
+    .page-intro { border-left-width: 6px; }
+    .cafe-about { padding-block: 56px 48px; }
+    .cafe-actions .button { width: 100%; min-width: 0; }
+    .cafe-photo-strip { grid-template-columns: 1fr; }
+    .cafe-feature { display: flex; }
+    .cafe-feature .photo-slot { aspect-ratio: 16 / 9; }
+    .cafe-section { padding-top: 56px; }
+    .cafe-heading-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .cafe-split, .cafe-band { margin-top: 56px; }
+  }
+}

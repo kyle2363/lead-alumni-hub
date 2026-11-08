@@ -7,6 +7,10 @@ import { eventDate, eventSchedule } from './utils';
 export function PageIntro({ eyebrow, title, children }: { eyebrow: string; title: string; children: ReactNode }) {
   return <div className="page-intro"><div className="container"><p className="eyebrow">{eyebrow}</p><h1 className="page-title">{title}</h1><p className="page-description">{children}</p></div></div>;
 }
+// Labeled stand-in for an approved photograph. No CAFE imagery is bundled with the prototype.
+export function PhotoSlot({ label, className = '' }: { label: string; className?: string }) {
+  return <div className={`photo-slot ${className}`} role="img" aria-label={`Photo placeholder: ${label}`}><span className="photo-slot-label">Photo placeholder · {label}</span></div>;
+}
 export function SectionHeading({ kicker, title, link, to }: { kicker: string; title: string; link?: string; to?: string }) {
   return <div className="section-heading"><div><p className="section-kicker">{kicker}</p><h2 className="section-title">{title}</h2></div>{link && to && <Link className="section-link" to={to}>{link}<ArrowUpRight size={18}/></Link>}</div>;
 }

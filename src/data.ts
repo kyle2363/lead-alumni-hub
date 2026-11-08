@@ -278,3 +278,28 @@ export const alumni: AlumniProfile[] = [
     bio: 'Fictional social entrepreneur interested in helping mission-led founders build durable, community-accountable organizations.',
   },
 ];
+
+export type GivingAsk = {
+  id: string;
+  title: string;
+  commitment: 'Under an hour' | 'A few hours' | 'Ongoing';
+  season: 'Summer' | 'Fall' | 'Winter' | 'Spring' | 'Any time';
+  format: 'Virtual' | 'In person' | 'Either';
+  askedBy: string;
+  description: string;
+};
+
+// Fictional "asks" for the Give Back page (design C). They illustrate the research
+// finding that alumni want to contribute, not only attend, at a level that fits their life.
+export const givingAsks: GivingAsk[] = [
+  { id: 'ask-coffee-chat', title: 'Host a 30-minute coffee chat with a summer intern', commitment: 'Under an hour', season: 'Summer', format: 'Virtual', askedBy: 'LEAD staff', description: 'Answer questions about your path, your field, and life after LEAD for one current intern.' },
+  { id: 'ask-storytelling', title: 'Speak at the storytelling workshop', commitment: 'A few hours', season: 'Summer', format: 'In person', askedBy: 'LEAD staff', description: 'Share your own story and help interns practice theirs during a summer professional-development session.' },
+  { id: 'ask-mentor', title: 'Mentor a summer intern', commitment: 'Ongoing', season: 'Summer', format: 'Either', askedBy: 'LEAD staff', description: 'Meet every other week for ten weeks with an intern whose interests match yours. Matching happens in the spring.' },
+  { id: 'ask-resume', title: 'Review resumes before recruiting season', commitment: 'A few hours', season: 'Fall', format: 'Virtual', askedBy: 'Alumni council', description: 'Give feedback on two or three resumes from recent alumni heading into fall recruiting.' },
+  { id: 'ask-host-panel', title: 'Return to your host organization for a panel', commitment: 'A few hours', season: 'Spring', format: 'In person', askedBy: 'Host organization', description: 'Your former manager invites you back to talk with their team about what LEAD interns bring to the work.' },
+  { id: 'ask-city-meetup', title: 'Organize a meetup in your city', commitment: 'A few hours', season: 'Any time', format: 'In person', askedBy: 'Alumni council', description: 'Not in Chicago? Pick a spot, and staff will send the invite to alumni near you and cover a small budget.' },
+  { id: 'ask-homecoming', title: 'Co-host the winter homecoming', commitment: 'A few hours', season: 'Winter', format: 'In person', askedBy: 'Alumni council', description: 'Help welcome alumni home over winter break: greet people, run an icebreaker, or introduce a speaker.' },
+  { id: 'ask-advisory', title: 'Join the alumni advisory circle', commitment: 'Ongoing', season: 'Any time', format: 'Virtual', askedBy: 'LEAD staff', description: 'Meet once a quarter to give feedback on LEAD programming and help shape what the alumni network becomes.' },
+  { id: 'ask-story', title: 'Share your story for the newsletter', commitment: 'Under an hour', season: 'Any time', format: 'Virtual', askedBy: 'LEAD staff', description: 'Answer five short questions about where you are now. Your spotlight helps other alumni see what is possible.' },
+  { id: 'ask-pulse', title: 'Answer a two-question pulse check', commitment: 'Under an hour', season: 'Any time', format: 'Virtual', askedBy: 'LEAD staff', description: 'Tell us what kinds of gatherings you would actually show up for this year.' },
+];

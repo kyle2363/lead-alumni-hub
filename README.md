@@ -25,6 +25,16 @@ npm run preview
 
 The build runs TypeScript checking before generating `dist/`. Preview serves the production build locally.
 
+## Design options
+
+The mockup banner at the top of every page has a **Design A / B / C** switcher. The choice is kept in the URL (`?design=cafe|classic|studio`, before the `#`), so you can share a link that opens a specific option, such as `/lead-alumni-hub/?design=studio#/give-back`.
+
+- **A · CAFE match** (`cafe`): follows thecafe.org/programs/lead closely. It uses the site's navy/orange tokens, Literata headings, a photo hero with a blue edge, peach feature cards, a split "why it matters" section, and a navy call-to-action band. No CAFE photos or logos are bundled. Labeled photo placeholders mark where approved images would go. `src/pages/CafeHomePage.tsx`, `src/cafe.css`.
+- **B · Current** (`classic`, default): the existing design, lightly polished. Changes: sticky header, pathway cards overlapping the hero, peach page intros, and consistent card and heading styles. `src/pages/HomePage.tsx`, `src/theme.css`.
+- **C · Reimagined** (`studio`): a new direction built from the empathy-interview findings. It includes a "How much time do you have?" picker, a seasonal "LEAD year" rhythm, an alumni quote band, a section on roles beyond CAFE staff (alumni council, host organizations, 1954 Project concept), and a new **Give back** page with right-sized asks. `src/pages/StudioHomePage.tsx`, `src/pages/GiveBackPage.tsx`, `src/studio.css`.
+
+All interior pages share their markup across designs. Each theme file is scoped under `:root[data-design='…']`, and `src/shared.css` holds the switcher and Give Back layout.
+
 ## What's included
 
 - Home: featured content from shared fixtures and clear paths into the community.
