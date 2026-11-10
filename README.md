@@ -30,10 +30,19 @@ The build runs TypeScript checking before generating `dist/`. Preview serves the
 The mockup banner at the top of every page has a **Design A / B / C** switcher. The choice is kept in the URL (`?design=cafe|classic|studio`, before the `#`), so you can share a link that opens a specific option, such as `/lead-alumni-hub/?design=studio#/give-back`.
 
 - **A · CAFE match** (`cafe`): follows thecafe.org/programs/lead closely. It uses the site's navy/orange tokens, Literata headings, a photo hero with a blue edge, peach feature cards, a split "why it matters" section, and a navy call-to-action band. No CAFE photos or logos are bundled. Labeled photo placeholders mark where approved images would go. `src/pages/CafeHomePage.tsx`, `src/cafe.css`.
-- **B · Current** (`classic`, default): the existing design, lightly polished. Changes: sticky header, pathway cards overlapping the hero, peach page intros, and consistent card and heading styles. `src/pages/HomePage.tsx`, `src/theme.css`.
+- **B · CAFE + features** (`classic`, default): the same CAFE look as A, carrying the research-driven features from C. It shares all of A's styling (`src/cafe.css` is scoped to both) and adds the time picker, the seasonal LEAD year, give-back asks, cohort and city views, and the staff page. `src/pages/HomePage.tsx`, `src/theme.css`.
 - **C · Reimagined** (`studio`): a new direction built from the empathy-interview findings. It includes a "How much time do you have?" picker, a seasonal "LEAD year" rhythm, an alumni quote band, a section on roles beyond CAFE staff (alumni council, host organizations, 1954 Project concept), and a new **Give back** page with right-sized asks. `src/pages/StudioHomePage.tsx`, `src/pages/GiveBackPage.tsx`, `src/studio.css`.
 
-All interior pages share their markup across designs. Each theme file is scoped under `:root[data-design='…']`, and `src/shared.css` holds the switcher and Give Back layout.
+Design A is kept as a plain mirror of the CAFE site. These features show in B and C only (gated by `hasFeatures` in `src/design.ts`):
+
+- **Give back** (`/give-back`): right-sized asks filtered by time and season.
+- **Your cohort, your city** (top of `/community`): pick a cohort year or a city to see who is there, the volunteer cohort captain or city host, and what that cohort is going to next. Both pickers drive the directory filters.
+- **Who's going**: each event shows a made-up count of alumni and the cohorts attending.
+- **How it runs** (`/how-it-runs`, linked from the mockup banner and footer): the staff-side plan. Who does what, staff effort by season, existing tools (Salesforce, the email tool, a LinkedIn group, Zoom), six success measures beyond attendance, what peer programs do, and a first 90 days. `src/pages/StaffPage.tsx`.
+
+Sample data follows the research: cohorts run 2018–2026 (LEAD's first cohort was 2018), events cover all four seasons, and topics come from the alumni survey. Tests in `src/utils.test.ts` check those three things.
+
+See [DESIGN_HANDOFF.md](DESIGN_HANDOFF.md) for per-design tokens, type, components and page-by-page specs. All interior pages share their markup across designs. Each theme file is scoped under `:root[data-design='…']`, and `src/shared.css` holds the switcher and Give Back layout.
 
 ## What's included
 

@@ -1,8 +1,16 @@
+import { createContext, useContext } from 'react';
+
 export type Design = 'cafe' | 'classic' | 'studio';
+
+// Design A is kept as a plain mirror of thecafe.org. The research-driven features
+// (give back, cohort and city views, who's going, the staff page) show in B and C only.
+export const DesignContext = createContext<Design>('classic');
+export const useDesign = () => useContext(DesignContext);
+export const hasFeatures = (design: Design) => design !== 'cafe';
 
 export const DESIGNS: { id: Design; letter: string; label: string; description: string }[] = [
   { id: 'cafe', letter: 'A', label: 'CAFE match', description: 'Closely follows the look of thecafe.org' },
-  { id: 'classic', letter: 'B', label: 'Current', description: 'The current capstone design, lightly polished' },
+  { id: 'classic', letter: 'B', label: 'CAFE + features', description: 'The CAFE look from A with the research-driven features from C' },
   { id: 'studio', letter: 'C', label: 'Reimagined', description: 'A new direction built around the research' },
 ];
 

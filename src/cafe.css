@@ -1,8 +1,9 @@
 /* Design A — "CAFE match". Tokens sampled from thecafe.org/programs/lead (Nov 2026):
    navy #133D65, orange #F1562A, page #FEFCFA, peach panels #FFF5F0, accent blue #337ABE,
    Literata headings, Graphik body (Public Sans stands in for Graphik, which is licensed).
-   Orange text and button fills use a slightly deeper #CF421A so white text passes WCAG AA. */
-:root[data-design='cafe'] {
+   Orange text and button fills use a slightly deeper #CF421A so white text passes WCAG AA.
+   Design B reuses this whole look, so the scope covers both; B's extras are in theme.css. */
+:root:is([data-design='cafe'], [data-design='classic']) {
   & {
     --navy: #133d65; --blue: #337abe; --sky: #3d9be9;
     --orange: #f1562a; --orange-dark: #cf421a;

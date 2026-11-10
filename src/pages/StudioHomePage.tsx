@@ -1,53 +1,27 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Clock, Moon, Sun, Leaf, Snowflake, Sprout } from 'lucide-react';
-import { events, type AlumniEvent } from '../data';
+import { events, seasons, timeOptions, SUMMER_NOTE, type AlumniEvent, type SeasonKey, type TimeKey } from '../data';
 import { Dialog, EventDetails } from '../components';
-import { DEMO_DATE, eventDate } from '../utils';
+import { DEMO_SEASON, eventDate, eventSeason, shortTitle } from '../utils';
 
 // Design C — "Reimagined". Built around the empathy-interview findings: alumni want
 // flexible, optional ways in (time picker), a predictable yearly rhythm (seasons),
 // real ways to give back, and connections beyond CAFE staff (hosts, alumni, 1954 Project).
-type TimeKey = 'minutes' | 'evening' | 'season';
-const timeOptions: { key: TimeKey; label: string; icon: typeof Clock; items: { title: string; copy: string; to: string }[] }[] = [
-  { key: 'minutes', label: '5 minutes', icon: Clock, items: [
-    { title: 'Read the monthly digest', copy: 'Events, roles, and alumni news picked for your interests.', to: '/newsletter' },
-    { title: 'Answer a two-question pulse', copy: 'Tell us what you would actually show up for.', to: '/give-back' },
-    { title: 'Browse open roles', copy: 'Fellowships and jobs shared by alumni and hosts.', to: '/opportunities' },
-  ] },
-  { key: 'evening', label: 'An evening', icon: Moon, items: [
-    { title: 'Join a virtual networking night', copy: 'Small breakout rooms, grouped by industry.', to: '/events' },
-    { title: 'Coffee chat with an alum in your field', copy: 'Opt-in introductions across cohorts and cities.', to: '/community' },
-    { title: 'Talk with this summer’s interns', copy: 'Thirty minutes that someone will remember for years.', to: '/give-back' },
-  ] },
-  { key: 'season', label: 'A season', icon: Sun, items: [
-    { title: 'Mentor a summer intern', copy: 'Ten weeks, every other week, matched by interest.', to: '/give-back' },
-    { title: 'Join the advisory circle', copy: 'Quarterly input that shapes what LEAD does next.', to: '/give-back' },
-    { title: 'Start a meetup in your city', copy: 'Staff send the invites and cover a small budget.', to: '/give-back' },
-  ] },
-];
-
-type SeasonKey = 'Summer' | 'Fall' | 'Winter' | 'Spring';
-const seasons: { key: SeasonKey; months: string; title: string; icon: typeof Sun; items: string[] }[] = [
-  { key: 'Fall', months: 'Sep – Nov', title: 'Back to campus', icon: Leaf, items: ['Cohort reunions on Zoom', 'Resume reviews by alumni', 'Industry interest groups kick off'] },
-  { key: 'Winter', months: 'Dec – Feb', title: 'Homecoming', icon: Snowflake, items: ['Winter-break homecoming in Chicago', 'Alumni-hosted meetups in other cities', 'Alumni spotlight issue'] },
-  { key: 'Spring', months: 'Mar – May', title: 'Get ready', icon: Sprout, items: ['Career clinics and mock interviews', 'Mentor matching for the summer', 'Advisory circle sets summer priorities'] },
-  { key: 'Summer', months: 'Jun – Aug', title: 'The new cohort arrives', icon: Sun, items: ['Alumni mentor current interns', 'Alumni speak at workshops', 'Summer social with both cohorts'] },
-];
-function seasonFor(date: Date): SeasonKey {
-  const m = date.getMonth();
-  return m >= 5 && m <= 7 ? 'Summer' : m >= 8 && m <= 10 ? 'Fall' : m >= 2 && m <= 4 ? 'Spring' : 'Winter';
-}
+const timeIcons: Record<TimeKey, typeof Clock> = { minutes: Clock, evening: Moon, season: Sun };
+const seasonIcons: Record<SeasonKey, typeof Sun> = { Fall: Leaf, Winter: Snowflake, Spring: Sprout, Summer: Sun };
 
 export function StudioHomePage() {
   const [time, setTime] = useState<TimeKey>('evening');
-  const now = seasonFor(new Date(DEMO_DATE));
+  const now = DEMO_SEASON;
   const [season, setSeason] = useState<SeasonKey>(now);
   const [event, setEvent] = useState<AlumniEvent | null>(null);
   const [rsvps, setRsvps] = useState<Set<string>>(new Set());
   const active = timeOptions.find(t => t.key === time)!;
   const activeSeason = seasons.find(s => s.key === season)!;
-  const upcoming = events.slice().sort((a, b) => Date.parse(a.startsAt) - Date.parse(b.startsAt)).slice(0, 4);
+  const sorted = events.slice().sort((a, b) => Date.parse(a.startsAt) - Date.parse(b.startsAt));
+  const upcoming = sorted.slice(0, 4);
+  const seasonEvents = sorted.filter(e => eventSeason(e) === season);
   return <>
     <section className="st-hero">
       <div className="container st-hero-grid">
@@ -61,7 +35,7 @@ export function StudioHomePage() {
           <p className="st-picker-kicker">Start here</p>
           <h2 id="picker-title">How much time do you have?</h2>
           <div className="st-picker-tabs" role="group" aria-label="Time available">
-            {timeOptions.map(t => <button key={t.key} type="button" aria-pressed={time === t.key} onClick={() => setTime(t.key)}><t.icon size={16}/>{t.label}</button>)}
+            {timeOptions.map(t => { const Icon = timeIcons[t.key]; return <button key={t.key} type="button" aria-pressed={time === t.key} onClick={() => setTime(t.key)}><Icon size={16}/>{t.label}</button>; })}
           </div>
           <ul className="st-picker-list" aria-live="polite">
             {active.items.map(i => <li key={i.title}><Link to={i.to}><span><b>{i.title}</b><small>{i.copy}</small></span><ArrowUpRight size={18}/></Link></li>)}
@@ -79,15 +53,16 @@ export function StudioHomePage() {
       <div className="st-heading"><p className="st-eyebrow">The LEAD year</p><h2>A rhythm you can count on, <em>not a calendar you have to keep.</em></h2></div>
       <div className="st-seasons">
         <div className="st-season-tabs" role="group" aria-label="Choose a season">
-          {seasons.map(s => <button key={s.key} type="button" aria-pressed={season === s.key} onClick={() => setSeason(s.key)} className={`st-season-tab st-season-${s.key.toLowerCase()}`}>
-            <s.icon size={20}/><span><b>{s.key}</b><small>{s.months}</small></span>{s.key === now && <i className="st-now">Now</i>}
-          </button>)}
+          {seasons.map(s => { const Icon = seasonIcons[s.key]; return <button key={s.key} type="button" aria-pressed={season === s.key} onClick={() => setSeason(s.key)} className={`st-season-tab st-season-${s.key.toLowerCase()}`}>
+            <Icon size={20}/><span><b>{s.key}</b><small>{s.months}</small></span>{s.key === now && <i className="st-now">Now</i>}
+          </button>; })}
         </div>
         <div className={`st-season-panel st-season-${season.toLowerCase()}`} aria-live="polite">
           <p className="st-eyebrow">{activeSeason.months}{season === now && ' · happening now in the sample calendar'}</p>
           <h3>{activeSeason.title}</h3>
           <ul>{activeSeason.items.map(i => <li key={i}>{i}</li>)}</ul>
-          {season === 'Summer' && <p className="st-note">Summer is the busiest time for staff, so summer asks are lined up in the spring and run by alumni volunteers.</p>}
+          {seasonEvents.length > 0 && <p className="st-season-events">On the sample calendar: {seasonEvents.map((e, i) => <span key={e.id}>{i > 0 && ' · '}<b>{shortTitle(e)}</b> ({eventDate(e, { month: 'short', day: 'numeric' })})</span>)}</p>}
+          {season === 'Summer' && <p className="st-note">{SUMMER_NOTE}</p>}
         </div>
       </div>
     </section>
@@ -122,6 +97,7 @@ export function StudioHomePage() {
         <article className="st-tile st-tile-mint"><p className="st-tag">Host organizations</p><h3>The people who hired you</h3><p>Former managers invite their interns back to speak, mentor, or apply. A personal invitation lands differently than a mass email.</p></article>
         <article className="st-tile st-tile-sky"><p className="st-tag">Concept to explore</p><h3>The 1954 Project network</h3><p>Conversations with leaders in CAFE’s wider network, including in the cities where alumni now study and work.</p></article>
       </div>
+      <p className="st-footnote">Wondering how a small team keeps this going? <Link className="st-inline-link" to="/how-it-runs">See the plan for staff</Link>, or <Link className="st-inline-link" to="/community">find your cohort and your city</Link>.</p>
     </section>
 
     <section className="container st-signup">

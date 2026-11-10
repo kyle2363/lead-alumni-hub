@@ -207,6 +207,18 @@
   .gb-card.raised { background: #eaf7ef; }
   .gb-steps li { border: 1.5px solid var(--ink); border-radius: 16px; background: var(--paper); }
   .gb-steps li::before { font-family: var(--display); font-size: 1.6rem; letter-spacing: 0; }
+  .co-panel, .hw-roles article, .hw-measures article, .hw-table-wrap { border: 1.5px solid var(--ink); box-shadow: var(--shadow); }
+  .co-years button, .co-cities button { border: 1.5px solid var(--ink); background: var(--paper); }
+  .co-cities button { border-radius: 14px; }
+  .co-years button[aria-pressed='true'], .co-cities button[aria-pressed='true'] { background: var(--ink); color: #fff; }
+  .hw-roles article:nth-child(3n + 1) { background: var(--lilac); }
+  .hw-roles article:nth-child(3n + 2) { background: var(--mint); }
+  .hw-roles article:nth-child(3n) { background: var(--sky); }
+  .hw-not, .hw-roles .hw-time { color: var(--ink); }
+  .hw-table thead th { background: #ffe3a6; color: var(--ink); }
+  .hw-table th, .hw-table td { border-bottom-color: var(--ink); }
+  .st-season-events { margin: 18px 0 0; font-size: .9rem; }
+  .st-inline-link { color: var(--orange-dark); font-weight: 700; }
   dialog.detail-dialog { border: 1.5px solid var(--ink); border-radius: var(--radius); box-shadow: 10px 10px 0 var(--ink); }
   .toast { border: 1.5px solid var(--ink); background: var(--ink); box-shadow: 4px 4px 0 var(--tangerine); }
 

@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { alumni, events, opportunities } from './data';
+import { alumni, cityHosts, cohortCaptains, events, opportunities } from './data';
 import {
   DEMO_DATE,
+  DEMO_SEASON,
+  eventSeason,
   eventSchedule,
   filterAlumni,
   filterEvents,
@@ -10,8 +12,8 @@ import {
 
 describe('event filters', () => {
   it('combines query, format, topic, location, and upcoming filters', () => {
-    const results = filterEvents(events, 'equity', 'Virtual', 'Equity and data', 'Online', true);
-    expect(results.map(event => event.id)).toEqual(['event-equity-data-2027']);
+    const results = filterEvents(events, 'finance', 'Virtual', 'Business & finance', 'Online', true);
+    expect(results.map(event => event.id)).toEqual(['event-impact-investing-2027']);
   });
 
   it('finds the finance event by searching its industry', () => {
@@ -66,6 +68,24 @@ describe('opportunity filters', () => {
 
   it('returns no results when filters cannot match', () => {
     expect(filterOpportunities(opportunities, 'nonexistent', '', '', false, false, new Set())).toEqual([]);
+  });
+});
+
+describe('fixtures match the research', () => {
+  it('keeps every profile and RSVP cohort inside LEAD’s real range (first cohort 2018)', () => {
+    const years = [...alumni.map(person => person.cohort), ...events.flatMap(event => event.cohorts)];
+    expect(Math.min(...years)).toBeGreaterThanOrEqual(2018);
+    expect(Math.max(...years)).toBeLessThanOrEqual(2026);
+  });
+
+  it('has sample events in all four seasons', () => {
+    expect(new Set(events.map(eventSeason))).toEqual(new Set(['Winter', 'Spring', 'Summer', 'Fall']));
+    expect(DEMO_SEASON).toBe('Winter');
+  });
+
+  it('names cohort captains and city hosts who exist in the directory', () => {
+    const names = alumni.map(person => person.name);
+    for (const name of [...Object.values(cohortCaptains), ...Object.values(cityHosts)]) expect(names).toContain(name);
   });
 });
 

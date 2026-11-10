@@ -28,4 +28,13 @@ export function eventDate(e: AlumniEvent, options: Intl.DateTimeFormatOptions) {
 export function eventSchedule(e: AlumniEvent) {
   return eventDate(e, { weekday:'long', month:'long', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit', timeZoneName:'short' });
 }
-export const unique = (values: string[]) => [...new Set(values)].sort();
+// Seasons follow the LEAD year: the internship runs June–August.
+export function seasonOfMonth(month: number): 'Summer' | 'Fall' | 'Winter' | 'Spring' {
+  return month >= 6 && month <= 8 ? 'Summer' : month >= 9 && month <= 11 ? 'Fall' : month >= 3 && month <= 5 ? 'Spring' : 'Winter';
+}
+// Read the month from the ISO string so the season never shifts with the viewer's time zone.
+export const eventSeason = (e: AlumniEvent) => seasonOfMonth(Number(e.startsAt.slice(5, 7)));
+export const DEMO_SEASON = seasonOfMonth(Number(DEMO_DATE.slice(5, 7)));
+export const shortTitle = (e: AlumniEvent) => e.title.replace('Example Event: ', '');
+export const whoIsGoing = (e: AlumniEvent) => `${e.going} alumni going · cohorts ${e.cohorts.map(c => `’${String(c).slice(2)}`).join(', ')}`;
+export const unique =(values: string[]) => [...new Set(values)].sort();
