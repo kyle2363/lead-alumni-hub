@@ -13,6 +13,11 @@ export function PageIntro({ eyebrow, title, children }: { eyebrow: string; title
 export function Photo({ src, alt, className = '', position }: { src: string; alt: string; className?: string; position?: string }) {
   return <div className={`photo-slot has-photo ${className}`}><img src={`${import.meta.env.BASE_URL}images/${src}`} alt={alt} loading="lazy" style={position ? { objectPosition: position } : undefined}/></div>;
 }
+// A wide photo band under a page intro. Design B only: A mirrors thecafe.org and C has its own look.
+export function PageBand({ src, alt, position }: { src: string; alt: string; position?: string }) {
+  if (useDesign() !== 'classic') return null;
+  return <div className="container page-band"><Photo src={src} alt={alt} position={position}/></div>;
+}
 export function PhotoSlot({ label, className = '' }: { label: string; className?: string }) {
   return <div className={`photo-slot ${className}`} role="img" aria-label={`Photo placeholder: ${label}`}><span className="photo-slot-label">Photo placeholder · {label}</span></div>;
 }

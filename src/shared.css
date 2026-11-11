@@ -98,5 +98,10 @@
 .photo-slot.has-photo:not(.cafe-hero-photo)::after { display: none; }
 .cafe-hero-photo.has-photo::after { z-index: 1; }
 .path-figure { margin: 24px 0 0; }
-.path-figure img { display: block; width: 100%; max-width: 1056px; height: auto; border-radius: 4px; }
+.path-figure img { display: block; width: 100%; max-width: 440px; height: auto; border-radius: 4px; }
 .path-figure figcaption { margin-top: 8px; color: var(--muted); font-size: .82rem; }
+
+/* Design B photo bands under page intros and above the give-back asks */
+.page-band { margin-top: 0; }
+.page-band .photo-slot, .bf-asks-photo { min-height: 0; height: clamp(180px, 24vw, 320px); }
+.bf-asks-photo { margin: 18px 0 8px; }

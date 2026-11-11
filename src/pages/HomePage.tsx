@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Clock, Moon, Sun, Leaf, Snowflake, Sprout } from 'lucide-react';
 import { events, givingAsks, opportunities, seasons, timeOptions, SUMMER_NOTE, type AlumniEvent, type Opportunity, type SeasonKey, type TimeKey } from '../data';
-import { Photo, Dialog, EventCard, EventDetails, OpportunityCard, PhotoSlot } from '../components';
+import { Photo, Dialog, EventCard, EventDetails, OpportunityCard } from '../components';
 import { DEMO_SEASON, eventDate, eventSeason, shortTitle } from '../utils';
 
 // Design B — the CAFE look from design A (same hero, type, peach panels, navy band)
@@ -97,6 +97,7 @@ export function HomePage({ saved, toggleSave }: { saved: Set<string>; toggleSave
 
     <section className="container cafe-section">
       <div className="cafe-heading-row"><div><p className="cafe-kicker">GIVE BACK</p><h2 className="cafe-h2">This season’s asks, sized to fit your life</h2></div><Link className="cafe-text-link" to="/give-back">All Ways to Give Back<ChevronRight size={16}/></Link></div>
+      <Photo className="bf-asks-photo" src="mentor-students.avif" alt="A mentor with two students at a LEAD gathering" position="center 35%"/>
       <p className="cafe-small">Fictional sample asks. Saying “not this time” keeps you on the list.</p>
       <div className="bf-ask-grid">
         {asks.map(a => <article className="bf-ask" key={a.id}>
@@ -123,7 +124,7 @@ export function HomePage({ saved, toggleSave }: { saved: Set<string>; toggleSave
         <p>Cohort captains and city hosts are alumni volunteers, so a reunion in Atlanta or a meetup in Washington doesn’t wait on staff in Chicago.</p>
         <div className="cafe-actions"><Link className="button primary" to="/community">Find Your Cohort<ChevronRight size={18}/></Link></div>
       </div>
-      <PhotoSlot className="cafe-split-photo" label="alumni meetup outside Chicago"/>
+      <Photo className="cafe-split-photo" src="intern-cohort.webp" alt="A LEAD intern cohort gathered together in front of a CAFE Group backdrop" position="center 40%"/>
     </section>
 
     <section className="container cafe-section">
