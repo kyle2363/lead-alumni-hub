@@ -147,6 +147,13 @@
 
   /* Beyond tiles */
   .st-beyond-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  /* From LEAD to Luminary */
+  .st-path-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 0 0 16px; padding: 0; list-style: none; }
+  .st-path-steps li { display: flex; flex-direction: column; gap: 6px; padding: 22px; border: 1.5px solid var(--ink); border-radius: var(--radius); background: var(--paper); }
+  .st-path-steps li:last-child { background: var(--sun); box-shadow: var(--shadow); }
+  .st-path-steps span { font-size: .8rem; font-weight: 700; opacity: .7; }
+  .st-path-steps b { font: 600 1.35rem/1.15 var(--display); }
+  .st-path-steps small { color: var(--ink); font-size: .92rem; line-height: 1.5; opacity: .85; }
   .st-tile { padding: 26px; border: 1.5px solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow); }
   .st-tile h3 { margin: 10px 0 10px; font: 600 1.5rem/1.15 var(--display); }
   .st-tile p:not(.st-tag) { margin: 0; line-height: 1.6; }
@@ -237,6 +244,7 @@
   }
   @media (max-width: 760px) {
     .st-seasons { grid-template-columns: 1fr; }
+    .st-path-steps { grid-template-columns: 1fr 1fr; }
     .st-season-tabs { grid-template-columns: repeat(2, 1fr); }
     .st-season-tab { min-height: 64px; padding: 12px 14px; }
     .st-now { top: -10px; right: 10px; }

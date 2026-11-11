@@ -12,6 +12,8 @@ export type AlumniEvent = {
   agenda: string[];
   going: number;
   cohorts: number[];
+  // Tie-in to The CAFE Group's 1954 Project. Shown only in designs B and C.
+  luminary?: boolean;
 };
 
 export type Opportunity = {
@@ -24,6 +26,8 @@ export type Opportunity = {
   remote: boolean;
   summary: string;
   description: string;
+  // Sample role at a 1954 Project Luminary organization. Shown only in designs B and C.
+  luminary?: boolean;
 };
 
 export type AlumniProfile = {
@@ -91,6 +95,22 @@ export const events: AlumniEvent[] = [
     cohorts: [2023, 2024, 2025, 2026],
   },
   {
+    id: 'event-luminary-conversation-2027',
+    title: 'Example Event: A Conversation with a 1954 Project Luminary',
+    description: 'A leader funded through CAFE’s 1954 Project talks about building an organization for students, and what they look for when they hire. Bring questions.',
+    startsAt: '2027-03-04T18:00:00-06:00',
+    timeZone: 'America/Chicago',
+    format: 'Virtual',
+    location: 'Online (example event)',
+    topic: 'Education leadership',
+    industry: 'Education',
+    audience: 'Alumni curious about education, nonprofits, or starting something of their own',
+    agenda: ['Welcome from LEAD staff', 'Fireside chat with a Luminary', 'Open questions from alumni'],
+    going: 34,
+    cohorts: [2019, 2021, 2023, 2025],
+    luminary: true,
+  },
+  {
     id: 'event-career-clinic-2027',
     title: 'Example Event: Resume and Mock Interview Clinic',
     description: 'Short one-on-one sessions with alumni volunteers ahead of spring recruiting. Bring a resume or a job posting you are aiming for.',
@@ -119,6 +139,22 @@ export const events: AlumniEvent[] = [
     agenda: ['Three founder stories', 'Peer feedback circles', 'Connections and next steps'],
     going: 27,
     cohorts: [2018, 2020, 2021, 2023],
+  },
+  {
+    id: 'event-luminary-site-visit-2027',
+    title: 'Example Event: Inside a Luminary Organization: Site Visit',
+    description: 'Spend a morning at a 1954 Project Luminary’s organization: meet the team, see the work with students up close, and hear how they got started.',
+    startsAt: '2027-05-13T10:00:00-05:00',
+    timeZone: 'America/Chicago',
+    format: 'In person',
+    location: 'Chicago, IL (example venue)',
+    topic: 'Education leadership',
+    industry: 'Education',
+    audience: 'Alumni in or near Chicago',
+    agenda: ['Tour and team introductions', 'How the organization started', 'Q&A and coffee'],
+    going: 15,
+    cohorts: [2018, 2022, 2024],
+    luminary: true,
   },
   {
     id: 'event-summer-social-2027',
@@ -219,6 +255,30 @@ export const opportunities: Opportunity[] = [
     remote: true,
     summary: 'Coordinate programs that help young people access leadership opportunities.',
     description: 'A fictional sample role supporting partner coordination, program logistics, and youth-centered evaluation. This is sample content, not a live opening.',
+  },
+  {
+    id: 'opp-luminary-program-associate',
+    title: 'Example Role: Program Associate, Student Success',
+    organization: 'Example Luminary Organization (1954 Project)',
+    type: 'Job',
+    industry: 'Education',
+    location: 'Atlanta, GA / Hybrid',
+    remote: false,
+    summary: 'Join a Black-led education organization funded through CAFE’s 1954 Project.',
+    description: 'A fictional sample role at an example 1954 Project Luminary organization, supporting student programs, family outreach, and data on student progress. This is sample content, not a live opening.',
+    luminary: true,
+  },
+  {
+    id: 'opp-luminary-fellowship',
+    title: 'Example Fellowship: Education Leadership Fellow',
+    organization: 'Example Luminary Organization (1954 Project)',
+    type: 'Fellowship',
+    industry: 'Education',
+    location: 'Chicago, IL',
+    remote: false,
+    summary: 'A year working alongside the leadership team of a 1954 Project Luminary.',
+    description: 'A fictional, prototype fellowship for early-career alumni who want to see how an education organization is built and run. This is sample content, not a live opening.',
+    luminary: true,
   },
   {
     id: 'opp-policy-internship',
@@ -348,7 +408,7 @@ export const timeOptions: { key: TimeKey; label: string; items: { title: string;
     { title: 'Coffee chat with an alum in your field', copy: 'Opt-in introductions across cohorts and cities.', to: '/community' },
     { title: 'Talk with this summer’s interns', copy: 'Thirty minutes that someone will remember for years.', to: '/give-back' },
   ] },
-  { key: 'season', label: 'A season', items: [
+  { key: 'season', label: 'A semester', items: [
     { title: 'Mentor a summer intern', copy: 'Ten weeks, every other week, matched by interest.', to: '/give-back' },
     { title: 'Join the advisory circle', copy: 'Quarterly input that shapes what LEAD does next.', to: '/give-back' },
     { title: 'Start a meetup in your city', copy: 'Staff send the invites and cover a small budget.', to: '/give-back' },

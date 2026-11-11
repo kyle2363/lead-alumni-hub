@@ -13,7 +13,14 @@ const seasonIcons: Record<SeasonKey, typeof Sun> = { Fall: Leaf, Winter: Snowfla
 const beyond = [
   { tag: 'ALUMNI-LED', title: 'An alumni council', copy: 'A rotating group of alumni plans reunions and city meetups with staff support, so the network can grow without needing more staff.' },
   { tag: 'HOST ORGANIZATIONS', title: 'The people who hired you', copy: 'Former managers invite their interns back to speak, mentor, or apply. A personal invitation lands differently than a mass email.' },
-  { tag: 'CONCEPT TO EXPLORE', title: 'The 1954 Project network', copy: 'Conversations with leaders in CAFE’s wider network, including in the cities where alumni now study and work.' },
+  { tag: 'CONCEPT TO EXPLORE', title: 'The 1954 Project', copy: 'CAFE’s 1954 Project gives unrestricted funding to Black leaders in education, called Luminaries. Alumni could hear from Luminaries and find roles at their organizations.' },
+];
+// From LEAD to Luminary: where LEAD sits on CAFE's path from intern to funded education leader.
+export const luminaryPath = [
+  { step: 'LEAD intern', copy: 'A summer placement in philanthropy and social impact.' },
+  { step: 'LEAD alum', copy: 'Stay connected, mentor the next cohort, and give back.' },
+  { step: 'Education leader', copy: 'Build and lead work that changes outcomes for students.' },
+  { step: '1954 Project Luminary', copy: 'CAFE’s 1954 Project funds Black leaders in education with unrestricted grants.' },
 ];
 
 export function HomePage({ saved, toggleSave }: { saved: Set<string>; toggleSave: (id: string) => void }) {
@@ -33,14 +40,14 @@ export function HomePage({ saved, toggleSave }: { saved: Set<string>; toggleSave
       <div className="cafe-hero-inner container">
         <p className="cafe-hero-eyebrow">OUR PROGRAMS · LEAD</p>
         <h1>LEAD Alumni</h1>
-        <p>Your summer ended. Your LEAD didn’t. Come back for a conversation, a reunion, or a whole season of mentoring, whenever it fits.</p>
+        <p>Your summer ended. Your LEAD didn’t. Come back for a conversation, a reunion, or a whole semester of mentoring, whenever it fits.</p>
       </div>
     </section>
 
     <section className="container bf-start">
       <div className="bf-start-copy">
         <p className="cafe-kicker">START WHERE YOU ARE</p>
-        <h2 className="cafe-h2">Five minutes, an evening, or a season. All of it counts.</h2>
+        <h2 className="cafe-h2">Five minutes, an evening, or a semester. All of it counts.</h2>
         <p>Nearly 400 alumni now live across the country and work in finance, nonprofits, engineering, the arts, public service, and more. Nobody has time for everything, so every way of taking part here is sorted by the time it takes.</p>
         <blockquote className="cafe-pullquote">“We want to come back and we want to give back.”<footer>LEAD 2025 alum, capstone empathy interview</footer></blockquote>
       </div>
@@ -122,6 +129,15 @@ export function HomePage({ saved, toggleSave }: { saved: Set<string>; toggleSave
     <section className="container cafe-section">
       <div className="cafe-heading-row"><div><p className="cafe-kicker">YOUR NEXT STEP</p><h2 className="cafe-h2">Opportunities for alumni</h2></div><Link className="cafe-text-link" to="/opportunities">All Opportunities<ChevronRight size={16}/></Link></div>
       <div className="card-grid">{opportunities.slice(0, 3).map(o => <OpportunityCard key={o.id} opportunity={o} saved={saved.has(o.id)} onSave={() => toggleSave(o.id)} onOpen={() => setOpportunity(o)}/>)}</div>
+    </section>
+
+    <section className="bf-path" aria-labelledby="path-title">
+      <div className="container">
+        <p className="cafe-kicker">FROM LEAD TO LUMINARY</p>
+        <h2 id="path-title" className="cafe-h2">Your summer is the first step on a longer path.</h2>
+        <ol className="bf-path-steps">{luminaryPath.map((p, i) => <li key={p.step}><span>{String(i + 1).padStart(2, '0')}</span><b>{p.step}</b><small>{p.copy}</small></li>)}</ol>
+        <p className="cafe-small">A concept to explore with CAFE. Sample <Link to="/events">Luminary events</Link> and <Link to="/opportunities">Luminary organization roles</Link> are fictional. Not an offer of funding.</p>
+      </div>
     </section>
 
     <section className="container cafe-section">

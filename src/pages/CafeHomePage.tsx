@@ -17,7 +17,8 @@ export function CafeHomePage({ saved, toggleSave }: { saved: Set<string>; toggle
   const [event, setEvent] = useState<AlumniEvent | null>(null);
   const [opportunity, setOpportunity] = useState<Opportunity | null>(null);
   const [rsvps, setRsvps] = useState<Set<string>>(new Set());
-  const upcoming = events.slice().sort((a, b) => Date.parse(a.startsAt) - Date.parse(b.startsAt)).slice(0, 3);
+  // Design A mirrors thecafe.org, so the 1954 Project samples (B and C only) stay out.
+  const upcoming = events.filter(e => !e.luminary).slice().sort((a, b) => Date.parse(a.startsAt) - Date.parse(b.startsAt)).slice(0, 3);
   return <>
     <section className="cafe-hero">
       <PhotoSlot className="cafe-hero-photo" label="alumni reconnecting at a LEAD gathering"/>
@@ -72,7 +73,7 @@ export function CafeHomePage({ saved, toggleSave }: { saved: Set<string>; toggle
 
     <section className="container cafe-section">
       <div className="cafe-heading-row"><div><p className="cafe-kicker">YOUR NEXT STEP</p><h2 className="cafe-h2">Opportunities for alumni</h2></div><Link className="cafe-text-link" to="/opportunities">All Opportunities<ChevronRight size={16}/></Link></div>
-      <div className="card-grid">{opportunities.slice(0, 3).map(o => <OpportunityCard key={o.id} opportunity={o} saved={saved.has(o.id)} onSave={() => toggleSave(o.id)} onOpen={() => setOpportunity(o)}/>)}</div>
+      <div className="card-grid">{opportunities.filter(o => !o.luminary).slice(0, 3).map(o => <OpportunityCard key={o.id} opportunity={o} saved={saved.has(o.id)} onSave={() => toggleSave(o.id)} onOpen={() => setOpportunity(o)}/>)}</div>
     </section>
 
     <section className="cafe-band">

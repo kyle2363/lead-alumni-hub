@@ -53,6 +53,16 @@
   .bf-season-events small { color: var(--muted); font-size: .8rem; }
 
   /* Give-back asks and "beyond staff" tiles */
+  /* From LEAD to Luminary */
+  .bf-path { padding: clamp(44px, 6vw, 72px) 0; background: var(--peach); }
+  .bf-path-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 28px 0 18px; padding: 0; list-style: none; }
+  .bf-path-steps li { display: flex; flex-direction: column; gap: 6px; padding: 22px 22px 24px; border-top: 4px solid var(--navy); background: #fff; }
+  .bf-path-steps li + li { border-left: 1px solid #f0d9cd; }
+  .bf-path-steps li:last-child { border-top-color: var(--orange); }
+  .bf-path-steps span { color: var(--orange-dark); font-size: .8rem; font-weight: 700; letter-spacing: .06em; }
+  .bf-path-steps b { color: var(--navy); font: 400 1.35rem/1.2 var(--serif); }
+  .bf-path-steps small { color: var(--muted); font-size: .92rem; line-height: 1.5; }
+  .bf-path .cafe-small a { color: var(--orange-dark); }
   .bf-ask-grid, .bf-beyond-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
   .bf-ask, .bf-beyond-grid article { display: flex; flex-direction: column; align-items: flex-start; padding: 26px 26px 28px; background: var(--peach); }
   .bf-ask-top { display: flex; width: 100%; justify-content: space-between; gap: 10px; margin: 0 0 14px; }
@@ -82,6 +92,8 @@
   @media (max-width: 900px) {
     .bf-start { grid-template-columns: 1fr; padding-block: 56px 48px; }
     .bf-ask-grid, .bf-beyond-grid { grid-template-columns: 1fr; }
+    .bf-path-steps { grid-template-columns: 1fr 1fr; }
+    .bf-path-steps li + li { border-left: 0; }
     .bf-season-panel { grid-template-columns: 1fr; }
   }
   @media (max-width: 650px) {

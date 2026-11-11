@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Clock, Moon, Sun, Leaf, Snowflake, Sprout } from 'lucide-react';
 import { events, seasons, timeOptions, SUMMER_NOTE, type AlumniEvent, type SeasonKey, type TimeKey } from '../data';
 import { Dialog, EventDetails } from '../components';
+import { luminaryPath } from './HomePage';
 import { DEMO_SEASON, eventDate, eventSeason, shortTitle } from '../utils';
 
 // Design C — "Reimagined". Built around the empathy-interview findings: alumni want
@@ -28,7 +29,7 @@ export function StudioHomePage() {
         <div className="st-hero-copy">
           <p className="st-eyebrow">LEAD alumni network</p>
           <h1>Your summer ended.<br/><em>Your LEAD didn’t.</em></h1>
-          <p>Come back for a conversation, a reunion, or a whole season of mentoring. Show up when it fits, and skip when it doesn’t. The door stays open.</p>
+          <p>Come back for a conversation, a reunion, or a whole semester of mentoring. Show up when it fits, and skip when it doesn’t. The door stays open.</p>
           <div className="st-hero-actions"><Link className="button primary" to="/give-back">Find a way to give back<ArrowRight size={18}/></Link><Link className="button st-link-light" to="/events">See gatherings</Link></div>
         </div>
         <div className="st-picker" aria-labelledby="picker-title">
@@ -90,12 +91,18 @@ export function StudioHomePage() {
       <p className="st-footnote">Fictional sample events for 2027.</p>
     </section>
 
+    <section className="container st-section st-path" aria-labelledby="st-path-title">
+      <div className="st-heading"><p className="st-eyebrow">From LEAD to Luminary</p><h2 id="st-path-title">Your summer is the first step <em>on a longer path.</em></h2></div>
+      <ol className="st-path-steps">{luminaryPath.map((p, i) => <li key={p.step}><span>{String(i + 1).padStart(2, '0')}</span><b>{p.step}</b><small>{p.copy}</small></li>)}</ol>
+      <p className="st-footnote">A concept to explore with CAFE. Sample <Link className="st-inline-link" to="/events">Luminary events</Link> and <Link className="st-inline-link" to="/opportunities">Luminary organization roles</Link> are fictional. Not an offer of funding.</p>
+    </section>
+
     <section className="container st-section st-beyond">
       <div className="st-heading"><p className="st-eyebrow">Beyond the CAFE staff</p><h2>More people in your corner. <em>Less work for a small team.</em></h2></div>
       <div className="st-beyond-grid">
         <article className="st-tile st-tile-lilac"><p className="st-tag">Alumni-led</p><h3>An alumni council</h3><p>A rotating group of alumni plans reunions and city meetups with staff support, so the network can grow without needing more staff.</p></article>
         <article className="st-tile st-tile-mint"><p className="st-tag">Host organizations</p><h3>The people who hired you</h3><p>Former managers invite their interns back to speak, mentor, or apply. A personal invitation lands differently than a mass email.</p></article>
-        <article className="st-tile st-tile-sky"><p className="st-tag">Concept to explore</p><h3>The 1954 Project network</h3><p>Conversations with leaders in CAFE’s wider network, including in the cities where alumni now study and work.</p></article>
+        <article className="st-tile st-tile-sky"><p className="st-tag">Concept to explore</p><h3>The 1954 Project</h3><p>CAFE’s 1954 Project gives unrestricted funding to Black leaders in education, called Luminaries. Alumni could hear from Luminaries and find roles at their organizations.</p></article>
       </div>
       <p className="st-footnote">Wondering how a small team keeps this going? <Link className="st-inline-link" to="/how-it-runs">See the plan for staff</Link>, or <Link className="st-inline-link" to="/community">find your cohort and your city</Link>.</p>
     </section>
