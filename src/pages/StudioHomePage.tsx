@@ -93,6 +93,7 @@ export function StudioHomePage() {
 
     <section className="container st-section st-path" aria-labelledby="st-path-title">
       <div className="st-heading"><p className="st-eyebrow">From LEAD to Luminary</p><h2 id="st-path-title">Your summer is the first step <em>on a longer path.</em></h2></div>
+      <figure className="path-figure"><img src={`${import.meta.env.BASE_URL}images/luminaries-2026.avif`} alt="The CAFE Group graphic announcing the 2026 1954 Project Luminaries" loading="lazy"/><figcaption>The 2026 1954 Project Luminaries. Image: The CAFE Group.</figcaption></figure>
       <ol className="st-path-steps">{luminaryPath.map((p, i) => <li key={p.step}><span>{String(i + 1).padStart(2, '0')}</span><b>{p.step}</b><small>{p.copy}</small></li>)}</ol>
       <p className="st-footnote">A concept to explore with CAFE. Sample <Link className="st-inline-link" to="/events">Luminary events</Link> and <Link className="st-inline-link" to="/opportunities">Luminary organization roles</Link> are fictional. Not an offer of funding.</p>
     </section>

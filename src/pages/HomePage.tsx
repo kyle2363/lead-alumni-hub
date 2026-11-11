@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Clock, Moon, Sun, Leaf, Snowflake, Sprout } from 'lucide-react';
 import { events, givingAsks, opportunities, seasons, timeOptions, SUMMER_NOTE, type AlumniEvent, type Opportunity, type SeasonKey, type TimeKey } from '../data';
-import { Dialog, EventCard, EventDetails, OpportunityCard, PhotoSlot } from '../components';
+import { Photo, Dialog, EventCard, EventDetails, OpportunityCard, PhotoSlot } from '../components';
 import { DEMO_SEASON, eventDate, eventSeason, shortTitle } from '../utils';
 
 // Design B — the CAFE look from design A (same hero, type, peach panels, navy band)
@@ -36,7 +36,7 @@ export function HomePage({ saved, toggleSave }: { saved: Set<string>; toggleSave
   const asks = [...givingAsks.filter(a => a.season === DEMO_SEASON), ...givingAsks.filter(a => a.season === 'Any time')].slice(0, 3);
   return <>
     <section className="cafe-hero">
-      <PhotoSlot className="cafe-hero-photo" label="alumni reconnecting at a LEAD gathering"/>
+      <Photo className="cafe-hero-photo" src="gathering-group.avif" alt="A large group of LEAD alumni and CAFE Group staff posing together at a gathering" position="center 30%"/>
       <div className="cafe-hero-inner container">
         <p className="cafe-hero-eyebrow">OUR PROGRAMS · LEAD</p>
         <h1>LEAD Alumni</h1>
@@ -93,7 +93,7 @@ export function HomePage({ saved, toggleSave }: { saved: Set<string>; toggleSave
       </div>
     </section>
 
-    <div className="cafe-photo-strip"><PhotoSlot label="cohort group photo"/><PhotoSlot label="alumni panel at a workshop"/></div>
+    <div className="cafe-photo-strip"><Photo src="cohort-group.avif" alt="Four LEAD interns smiling in front of a CAFE Group backdrop" position="center 25%"/><Photo src="roundtable.avif" alt="Alumni listening during a roundtable discussion"/></div>
 
     <section className="container cafe-section">
       <div className="cafe-heading-row"><div><p className="cafe-kicker">GIVE BACK</p><h2 className="cafe-h2">This season’s asks, sized to fit your life</h2></div><Link className="cafe-text-link" to="/give-back">All Ways to Give Back<ChevronRight size={16}/></Link></div>
@@ -135,6 +135,7 @@ export function HomePage({ saved, toggleSave }: { saved: Set<string>; toggleSave
       <div className="container">
         <p className="cafe-kicker">FROM LEAD TO LUMINARY</p>
         <h2 id="path-title" className="cafe-h2">Your summer is the first step on a longer path.</h2>
+        <figure className="path-figure"><img src={`${import.meta.env.BASE_URL}images/luminaries-2026.avif`} alt="The CAFE Group graphic announcing the 2026 1954 Project Luminaries" loading="lazy"/><figcaption>The 2026 1954 Project Luminaries. Image: The CAFE Group.</figcaption></figure>
         <ol className="bf-path-steps">{luminaryPath.map((p, i) => <li key={p.step}><span>{String(i + 1).padStart(2, '0')}</span><b>{p.step}</b><small>{p.copy}</small></li>)}</ol>
         <p className="cafe-small">A concept to explore with CAFE. Sample <Link to="/events">Luminary events</Link> and <Link to="/opportunities">Luminary organization roles</Link> are fictional. Not an offer of funding.</p>
       </div>

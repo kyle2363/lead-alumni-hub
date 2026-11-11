@@ -9,6 +9,10 @@ export function PageIntro({ eyebrow, title, children }: { eyebrow: string; title
   return <div className="page-intro"><div className="container"><p className="eyebrow">{eyebrow}</p><h1 className="page-title">{title}</h1><p className="page-description">{children}</p></div></div>;
 }
 // Labeled stand-in for an approved photograph. No CAFE imagery is bundled with the prototype.
+// A photo from public/images, with alt text. Slots without a photo yet stay labeled placeholders.
+export function Photo({ src, alt, className = '', position }: { src: string; alt: string; className?: string; position?: string }) {
+  return <div className={`photo-slot has-photo ${className}`}><img src={`${import.meta.env.BASE_URL}images/${src}`} alt={alt} loading="lazy" style={position ? { objectPosition: position } : undefined}/></div>;
+}
 export function PhotoSlot({ label, className = '' }: { label: string; className?: string }) {
   return <div className={`photo-slot ${className}`} role="img" aria-label={`Photo placeholder: ${label}`}><span className="photo-slot-label">Photo placeholder · {label}</span></div>;
 }

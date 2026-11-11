@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { events, opportunities, type AlumniEvent, type Opportunity } from '../data';
-import { Dialog, EventCard, EventDetails, OpportunityCard, PhotoSlot } from '../components';
+import { Photo, Dialog, EventCard, EventDetails, OpportunityCard } from '../components';
 
 // Design A — mirrors the structure of thecafe.org/programs/lead: photo hero, a long-form
 // "about" block with a blue pull quote, peach feature cards, a split "why it matters"
 // section, and a navy call-to-action band. Photos are labeled placeholders.
 const experience = [
-  { title: 'Gatherings', photo: 'alumni at a reunion', copy: 'Virtual coffee chats, themed networking sessions, and a yearly homecoming during winter break bring cohorts back together, wherever alumni live now.', to: '/events', link: 'Explore Events' },
-  { title: 'Opportunities', photo: 'alum at work', copy: 'Fellowships, mission-driven roles, and career resources shared by staff, host organizations, and fellow alumni across the industries LEAD alumni work in.', to: '/opportunities', link: 'View Opportunities' },
-  { title: 'Mentorship', photo: 'mentor and intern talking', copy: 'Alumni return to mentor summer interns, speak at workshops, and help the next cohort find its footing, on a schedule that fits their lives.', to: '/community?mentor=true', link: 'Meet Mentors' },
+  { title: 'Gatherings', photo: 'alumni at a reunion', img: 'reunion.avif', alt: 'Four LEAD alumni standing together at a CAFE Group event', copy: 'Virtual coffee chats, themed networking sessions, and a yearly homecoming during winter break bring cohorts back together, wherever alumni live now.', to: '/events', link: 'Explore Events' },
+  { title: 'Opportunities', photo: 'alum at work', img: 'working-session.avif', alt: 'Alumni working on laptops around a shared table', copy: 'Fellowships, mission-driven roles, and career resources shared by staff, host organizations, and fellow alumni across the industries LEAD alumni work in.', to: '/opportunities', link: 'View Opportunities' },
+  { title: 'Mentorship', photo: 'mentor and intern talking', img: 'mentor-students.avif', alt: 'A mentor with two students at a LEAD gathering', copy: 'Alumni return to mentor summer interns, speak at workshops, and help the next cohort find its footing, on a schedule that fits their lives.', to: '/community?mentor=true', link: 'Meet Mentors' },
 ];
 
 export function CafeHomePage({ saved, toggleSave }: { saved: Set<string>; toggleSave: (id: string) => void }) {
@@ -21,7 +21,7 @@ export function CafeHomePage({ saved, toggleSave }: { saved: Set<string>; toggle
   const upcoming = events.filter(e => !e.luminary).slice().sort((a, b) => Date.parse(a.startsAt) - Date.parse(b.startsAt)).slice(0, 3);
   return <>
     <section className="cafe-hero">
-      <PhotoSlot className="cafe-hero-photo" label="alumni reconnecting at a LEAD gathering"/>
+      <Photo className="cafe-hero-photo" src="gathering-group.avif" alt="A large group of LEAD alumni and CAFE Group staff posing together at a gathering" position="center 30%"/>
       <div className="cafe-hero-inner container">
         <p className="cafe-hero-eyebrow">OUR PROGRAMS · LEAD</p>
         <h1>LEAD Alumni</h1>
@@ -41,14 +41,14 @@ export function CafeHomePage({ saved, toggleSave }: { saved: Set<string>; toggle
       </div>
     </section>
 
-    <div className="cafe-photo-strip"><PhotoSlot label="cohort group photo"/><PhotoSlot label="alumni panel at a workshop"/></div>
+    <div className="cafe-photo-strip"><Photo src="cohort-group.avif" alt="Four LEAD interns smiling in front of a CAFE Group backdrop" position="center 25%"/><Photo src="roundtable.avif" alt="Alumni listening during a roundtable discussion"/></div>
 
     <section className="container cafe-section">
       <p className="cafe-kicker">THE ALUMNI EXPERIENCE</p>
       <h2 className="cafe-h2">What staying connected looks like</h2>
       <div className="cafe-feature-grid">
         {experience.map(x => <article className="cafe-feature" key={x.title}>
-          <PhotoSlot label={x.photo}/>
+          <Photo src={x.img} alt={x.alt}/>
           <div><h3>{x.title}</h3><p>{x.copy}</p><Link className="cafe-text-link" to={x.to}>{x.link}<ChevronRight size={16}/></Link></div>
         </article>)}
       </div>
@@ -68,7 +68,7 @@ export function CafeHomePage({ saved, toggleSave }: { saved: Set<string>; toggle
         <p>When the summer ends, interns return to campuses across the country. Without a shared structure, staying in touch depends on a group chat or a personal connection with staff, and many alumni drift away.</p>
         <p>An intentional alumni network turns one summer of community into lasting social capital. Alumni get peers and mentors to grow with, and the next cohort gets role models who once sat in the same seats.</p>
       </div>
-      <PhotoSlot className="cafe-split-photo" label="alumni in conversation"/>
+      <Photo className="cafe-split-photo" src="alumni-conversation.avif" alt="Two LEAD alumni smiling together at an evening event" position="center 20%"/>
     </section>
 
     <section className="container cafe-section">

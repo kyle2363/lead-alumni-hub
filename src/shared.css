@@ -91,3 +91,12 @@
 .gb-steps.hw-pilot span { color: var(--ink); }
 @media (max-width: 900px) { .co-grid, .hw-roles, .hw-measures { grid-template-columns: 1fr; } .gb-steps.hw-pilot { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 650px) { .co-facts li { grid-template-columns: 1fr; } .co-cities, .gb-steps.hw-pilot { grid-template-columns: 1fr; } }
+
+/* Real photos inside photo slots (designs A and B) and the 1954 Project graphic (B and C) */
+.photo-slot.has-photo { background: #133d65; }
+.photo-slot.has-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-slot.has-photo:not(.cafe-hero-photo)::after { display: none; }
+.cafe-hero-photo.has-photo::after { z-index: 1; }
+.path-figure { margin: 24px 0 0; }
+.path-figure img { display: block; width: 100%; max-width: 1056px; height: auto; border-radius: 4px; }
+.path-figure figcaption { margin-top: 8px; color: var(--muted); font-size: .82rem; }
