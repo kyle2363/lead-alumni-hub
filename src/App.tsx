@@ -35,6 +35,7 @@ export default function App() {
   const [interests, setInterests] = useState<string[]>(['Events', 'Career opportunities']);
   const [cadence, setCadence] = useState('Monthly');
   const [toast, setToast] = useState('');
+  const [toastHold, setToastHold] = useState(false);
   const location = useLocation();
   const setDesign = (d: Design) => { setDesignState(d); syncDesignToUrl(d); };
   useEffect(() => { document.documentElement.dataset.design = design; }, [design]);
@@ -44,7 +45,8 @@ export default function App() {
     document.title = `LEAD Alumni — ${titles[location.pathname] ?? 'Page not found'}`;
     document.getElementById('main-content')?.focus({ preventScroll: true });
   }, [location.pathname]);
-  useEffect(() => { if (!toast) return; const timer = setTimeout(() => setToast(''), 6500); return () => clearTimeout(timer); }, [toast]);
+  // The toast stays while the pointer or keyboard focus is on it, so nobody loses it mid-read.
+  useEffect(() => { if (!toast || toastHold) return; const timer = setTimeout(() => setToast(''), 6500); return () => clearTimeout(timer); }, [toast, toastHold]);
   const toggleSave = (id: string) => { setSaved(current => { const next = new Set(current); if (next.has(id)) next.delete(id); else next.add(id); return next; }); };
   const nav = design === 'studio' ? studioNav : design === 'classic' ? featureNav : baseNav;
   const features = hasFeatures(design);
@@ -77,6 +79,6 @@ export default function App() {
       </div>
       <div className="footer-note"><p>An independent educational capstone concept inspired by The CAFE Group's LEAD program. All people, events, and opportunities shown are fictional.</p><p>No registrations, introductions, or subscriptions are sent. Demo choices reset when you refresh.</p></div>
     </div></footer>
-    <div className="toast-region" role="status" aria-live="polite">{toast && <div className="toast">{toast}<button onClick={() => setToast('')} aria-label="Dismiss message"><X size={16}/></button></div>}</div>
+    <div className="toast-region" role="status" aria-live="polite">{toast && <div className="toast" onMouseEnter={() => setToastHold(true)} onMouseLeave={() => setToastHold(false)} onFocus={() => setToastHold(true)} onBlur={() => setToastHold(false)}>{toast}<button onClick={() => { setToast(''); setToastHold(false); }} aria-label="Dismiss message"><X size={16}/></button></div>}</div>
   </DesignContext.Provider>;
 }

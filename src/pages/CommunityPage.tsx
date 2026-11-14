@@ -90,7 +90,7 @@ export function CommunityPage({ notify }: { notify: (s: string) => void }) {
     </section>
     <section className="container section">
       <SectionHeading kicker="KEEP THE CIRCLE GROWING" title="Make your experience count."/>
-      <div className="giveback-options">{[{ title: 'Be a mentor', copy: 'Offer perspective to someone finding their path.' }, { title: 'Share your story', copy: 'Spark a conversation at a future alumni gathering.' }, { title: 'Help shape the community', copy: 'Suggest ideas, welcome alumni, or help organize.' }].map(o => <article key={o.title}><h3>{o.title}</h3><p>{o.copy}</p><button className="text-button" onClick={() => notify(`Demo interest in “${o.title}” recorded on screen only. Nothing was submitted.`)}>Show demo interest<ArrowUpRight size={18}/></button></article>)}</div>
+      <div className="giveback-options">{[{ title: 'Be a mentor', copy: 'Offer perspective to someone finding their path.' }, { title: 'Share your story', copy: 'Spark a conversation at a future alumni gathering.' }, { title: 'Help shape the community', copy: 'Suggest ideas, welcome alumni, or help organize.' }].map(o => <article key={o.title}><h3>{o.title}</h3><p>{o.copy}</p><button className="text-button" onClick={() => notify(`Demo interest in “${o.title}” recorded on screen only. Nothing was submitted.`)}>Show demo interest<span className="sr-only">: {o.title}</span><ArrowUpRight size={18}/></button></article>)}</div>
     </section>
     {selected && <Dialog title={selected.name} onClose={() => setSelected(null)}>
       <p className="notice">Fictional example profile. No real person will be contacted.</p>

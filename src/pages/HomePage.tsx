@@ -105,7 +105,7 @@ export function HomePage({ saved, toggleSave }: { saved: Set<string>; toggleSave
           <h3>{a.title}</h3>
           <p>{a.description}</p>
           <p className="bf-ask-by">{a.format} · Asked by {a.askedBy}</p>
-          <Link className="cafe-text-link" to="/give-back">Raise My Hand<ChevronRight size={16}/></Link>
+          <Link className="cafe-text-link" to="/give-back">Raise My Hand<span className="sr-only">: {a.title}</span><ChevronRight size={16}/></Link>
         </article>)}
       </div>
     </section>

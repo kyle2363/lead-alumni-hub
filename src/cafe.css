@@ -1,12 +1,13 @@
 /* Design A — "CAFE match". Tokens sampled from thecafe.org/programs/lead (Nov 2026):
    navy #133D65, orange #F1562A, page #FEFCFA, peach panels #FFF5F0, accent blue #337ABE,
    Literata headings, Graphik body (Public Sans stands in for Graphik, which is licensed).
-   Orange text and button fills use a slightly deeper #CF421A so white text passes WCAG AA.
+   Orange text and button fills use a deeper #B83A16 so text passes WCAG AA (4.5:1) on the
+   peach panels as well as on white. Pull-quote blue is deepened to #2A6AA8 for the same reason.
    Design B reuses this whole look, so the scope covers both; B's extras are in theme.css. */
 :root:is([data-design='cafe'], [data-design='classic']) {
   & {
     --navy: #133d65; --blue: #337abe; --sky: #3d9be9;
-    --orange: #f1562a; --orange-dark: #cf421a;
+    --orange: #f1562a; --orange-dark: #b83a16;
     --gold: #f1562a;
     --peach: #fff5f0; --cream: #fefcfa; --paper: #fff;
     --ink: #2c2c2c; --muted: #555; --line: #e8e6e6;
@@ -75,10 +76,10 @@
   /* Hero */
   .cafe-hero { position: relative; min-height: clamp(420px, 52vw, 560px); display: flex; align-items: center; border-left: 12px solid var(--sky); overflow: hidden; }
   .cafe-hero-photo { position: absolute; inset: 0; min-height: 0; }
-  .cafe-hero-photo::after { background: linear-gradient(90deg, #133d65e6 0%, #133d65b3 45%, #337abe59 100%); }
+  .cafe-hero-photo::after { background: linear-gradient(90deg, #133d65f2 0%, #133d65d9 50%, #133d6566 100%); }
   .cafe-hero-photo .photo-slot-label { left: auto; right: 16px; }
   .cafe-hero-inner { position: relative; z-index: 1; padding-block: 60px; color: #fefcfa; }
-  .cafe-hero-eyebrow { margin: 0 0 6px; color: #cac8c7; font-size: 1rem; letter-spacing: .04em; }
+  .cafe-hero-eyebrow { margin: 0 0 6px; color: #fff; font-size: 1rem; letter-spacing: .04em; }
   .cafe-hero h1 { margin: 0; font: 700 clamp(3rem, 6vw, 4.6rem)/1.05 var(--serif); }
   .cafe-hero-inner > p:last-child { max-width: 560px; margin: 22px 0 0; font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.55; }
 
@@ -87,7 +88,7 @@
   .cafe-kicker { margin: 0 0 14px; }
   .cafe-about h2, .cafe-h2 { margin: 0 0 26px; color: var(--navy); font: 700 clamp(2rem, 3.6vw, 3rem)/1.18 var(--serif); }
   .cafe-about > p:not(.cafe-kicker) { margin: 0 0 22px; font-size: clamp(1.02rem, 1.4vw, 1.2rem); line-height: 1.6; }
-  .cafe-pullquote { margin: 38px 0 40px; color: var(--blue); font: 400 clamp(1.45rem, 2.6vw, 2rem)/1.35 var(--serif); }
+  .cafe-pullquote { margin: 38px 0 40px; color: #2a6aa8; font: 400 clamp(1.45rem, 2.6vw, 2rem)/1.35 var(--serif); }
   .cafe-actions { display: flex; flex-wrap: wrap; gap: 16px 24px; }
   .cafe-actions .button { min-width: 280px; }
 
