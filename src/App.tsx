@@ -77,6 +77,14 @@ export default function App() {
         <div className="footer-brand"><Link className="brand" to="/"><Brand design={design}/></Link><p>Keep growing. Stay connected. Give back.</p></div>
         <div className="footer-links"><Link to="/events">Explore events</Link><Link to="/community">Meet the community</Link>{features && <Link to="/give-back">Give back</Link>}<Link to="/newsletter">Stay connected</Link>{features && <Link to="/how-it-runs">For staff: how it runs</Link>}<a href="https://www.thecafe.org/programs/lead">Official LEAD program<ArrowUpRight size={15}/></a></div>
       </div>
+      <section className="footer-cafe" aria-labelledby="footer-cafe-title">
+        <a href="https://www.thecafe.org/" className="footer-cafe-logo"><img src={`${import.meta.env.BASE_URL}images/cafe-group-logo-white.png`} alt="The CAFE Group" width="240" height="49"/></a>
+        <div className="footer-cafe-text">
+          <h2 id="footer-cafe-title">Our mission</h2>
+          <p className="footer-cafe-mission">To love, invest, and build for generations.</p>
+          <p>We bring people, resources, and imagination together to transform philanthropy and the future it fuels. LEAD is a program of The CAFE Group.</p>
+        </div>
+      </section>
       <div className="footer-note"><p>An independent educational capstone concept inspired by The CAFE Group's LEAD program. All people, events, and opportunities shown are fictional.</p><p>No registrations, introductions, or subscriptions are sent. Demo choices reset when you refresh.</p></div>
     </div></footer>
     <div className="toast-region" role="status" aria-live="polite">{toast && <div className="toast" onMouseEnter={() => setToastHold(true)} onMouseLeave={() => setToastHold(false)} onFocus={() => setToastHold(true)} onBlur={() => setToastHold(false)}>{toast}<button onClick={() => { setToast(''); setToastHold(false); }} aria-label="Dismiss message"><X size={16}/></button></div>}</div>
