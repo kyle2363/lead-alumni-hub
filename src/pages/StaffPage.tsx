@@ -70,7 +70,7 @@ export function StaffPage() {
       <SectionHeading kicker="KNOWING IT WORKS" title="Six measures, none of them attendance alone."/>
       <p className="section-description">Staff told us success is not every alum at every event. It is the door being open for the ones who want it. These measures check the door, not the headcount.</p>
       <div className="hw-measures">{measures.map(m => <article key={m.name}><h3>{m.name}</h3><p>{m.asks}</p><dl><div><dt>Comes from</dt><dd>{m.source}</dd></div><div><dt>Sample value</dt><dd>{m.sample}</dd></div></dl></article>)}</div>
-      <p className="hw-caption">Sample values are invented to show the format. The only real baselines are the 2026 survey’s response rate (about 80 of 300) and the 88.5% of respondents who want to stay connected.</p>
+      <p className="hw-caption">Sample values are invented to show the format. The only real baselines are the 2026 survey’s response rate (about 80 of 300) and the 85% of respondents who want to stay connected.</p>
     </section>
 
     <section className="container section">

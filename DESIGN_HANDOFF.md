@@ -80,7 +80,7 @@ CAFE's orange is too light for white text to meet WCAG AA, so filled buttons and
 **Home page, top to bottom**
 1. **Hero:** the same photo hero as A.
 2. **Start where you are:** about copy and the alumni pull quote on the left, the **"How much time do you have?"** picker on the right (peach panel, orange top rule, three squared toggles, three linked actions).
-3. **Navy stats strip:** ~380 alumni, 88.5% want to stay connected (footnoted), 4 seasons.
+3. **Navy stats strip:** ~380 alumni, 85% want to stay connected (footnoted), 4 seasons.
 4. **The LEAD year:** four season tabs on a navy rule. The peach panel shows what happens that season on the left and that season's sample events on the right; each event opens its dialog.
 5. **Photo strip**, as in A.
 6. **This season's asks:** three give-back cards with time, season, format, and who is asking.
@@ -122,7 +122,7 @@ Accent fills always carry ink-colored text, never white, so every combination pa
 
 **Home page, top to bottom**
 1. **Dark hero:** "Your summer ended. *Your LEAD didn't.*" with two buttons, plus the **"How much time do you have?"** picker. The picker has three toggles (5 minutes / An evening / A season), each showing three linked actions, and opens on "An evening".
-2. **Stats row:** ~380 alumni, 88.5% want to stay connected (footnoted), and 4 seasons.
+2. **Stats row:** ~380 alumni, 85% want to stay connected (footnoted), and 4 seasons.
 3. **The LEAD year:** four season buttons and a detail panel tinted to match. "Now" is set from the demo date of Jan 2027, so it shows Winter. Summer adds a note that summer asks are lined up in spring to protect staff time.
 4. **Tangerine quote band:** "We want to come back and we want to give back." with a CTA to the give-back asks.
 5. **Gatherings:** a list of the next four events (date, title, topic and place, format pill), each opening a dialog.
@@ -135,4 +135,4 @@ Accent fills always carry ink-colored text, never white, so every combination pa
 
 **Added in this pass:** each season in the LEAD year lists its sample events, and the "Beyond the CAFE staff" section links to the staff plan and the cohort and city pickers.
 
-**Before launch:** confirm the 88.5% survey figure and the quote attribution with staff, confirm whether CAFE wants a visual identity this separate from its brand, and confirm that a 1954 Project tie-in is welcome.
+**Before launch:** confirm the 85% survey figure and the quote attribution with staff, confirm whether CAFE wants a visual identity this separate from its brand, and confirm that a 1954 Project tie-in is welcome.

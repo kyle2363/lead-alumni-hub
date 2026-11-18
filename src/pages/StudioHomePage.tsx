@@ -45,7 +45,7 @@ export function StudioHomePage() {
       </div>
       <div className="container st-stats">
         <p><b>~380</b><span>alumni since the first cohort in 2018</span></p>
-        <p><b>88.5%</b><span>of surveyed alumni want to stay connected¹</span></p>
+        <p><b>85%</b><span>of surveyed alumni want to stay connected¹</span></p>
         <p><b>4</b><span>seasons, each with a reason to come back</span></p>
       </div>
     </section>
